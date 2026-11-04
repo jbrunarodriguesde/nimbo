@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: nimbo
+      POSTGRES_PASSWORD: nimbo_local
+      POSTGRES_DB: nimbo
+    ports: ["5432:5432"]
+    volumes: ["nimbo_data:/var/lib/postgresql/data"]
+volumes:
+  nimbo_data:

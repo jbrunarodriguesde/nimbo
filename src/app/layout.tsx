@@ -1,0 +1,1 @@
+import './globals.css';export const metadata={title:'Nimbo — Clareza para o seu dinheiro',description:'Organização financeira pessoal. Projeto demonstrativo.'};export default function Layout({children}:{children:React.ReactNode}){return <html lang='pt-BR'><body>{children}</body></html>}

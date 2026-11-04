@@ -1,0 +1,2 @@
+export function balance(initial:number,transactions:{amount:number,type:string,status:string}[],incoming:number=0,outgoing:number=0){return initial+transactions.filter(t=>t.status==='REALIZADO').reduce((s,t)=>s+(t.type==='RECEITA'?t.amount:-t.amount),0)+incoming-outgoing}
+export function duplicate(a:{date:string,amount:number,description:string},b:{date:string,amount:number,description:string}){return a.date===b.date&&a.amount===b.amount&&a.description.trim().toLowerCase()===b.description.trim().toLowerCase()}

@@ -1,0 +1,13 @@
+node_modules
+.next
+.env
+*.log
+
+.env.*
+!.env.example
+*.tsbuildinfo
+create.py
+ui.py
+finish.py
+demo.py
+publish_repo.py

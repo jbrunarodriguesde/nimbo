@@ -1,0 +1,87 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+ provider = "postgresql"
+ url = env("DATABASE_URL")
+}
+model User {
+ id String @id @default(cuid())
+ email String @unique
+ password String
+ name String
+}
+model Account {
+ id String @id @default(cuid())
+ userId String
+ name String
+ initial Int @default(0)
+ @@index([userId])
+}
+model Category {
+ id String @id @default(cuid())
+ userId String
+ name String
+ @@index([userId])
+}
+model Transaction {
+ id String @id @default(cuid())
+ userId String
+ accountId String
+ categoryId String?
+ description String
+ amount Int
+ type String
+ date String
+ status String @default("REALIZADO")
+ recurrenceId String?
+ @@unique([recurrenceId,date])
+ @@index([userId,date])
+}
+model Transfer {
+ id String @id @default(cuid())
+ userId String
+ fromId String
+ toId String
+ amount Int
+ date String
+ @@index([userId])
+}
+model Budget {
+ id String @id @default(cuid())
+ userId String
+ categoryId String
+ month String
+ amount Int
+ @@unique([userId,categoryId,month])
+}
+model Goal {
+ id String @id @default(cuid())
+ userId String
+ name String
+ amount Int
+ @@index([userId])
+}
+model GoalContribution {
+ id String @id @default(cuid())
+ userId String
+ goalId String
+ amount Int
+ date String
+}
+model Recurrence {
+ id String @id @default(cuid())
+ userId String
+ accountId String
+ categoryId String?
+ description String
+ amount Int
+ type String
+ day Int
+}
+model ImportBatch {
+ id String @id @default(cuid())
+ userId String
+ createdAt DateTime @default(now())
+ count Int
+}
